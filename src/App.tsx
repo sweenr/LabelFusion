@@ -21,7 +21,7 @@ function App() {
                 }
             }
 
-            reader.onerror = (event) => {
+            reader.onerror = () => {
                 reject('Could not read file')
             }
 
