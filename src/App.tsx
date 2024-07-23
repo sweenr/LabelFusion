@@ -32,7 +32,6 @@ function App() {
     const generatePdf = async () => {
         if (pdfInputRef.current) {
             const files = (pdfInputRef.current as HTMLInputElement).files
-            console.log(files)
 
             if (files !== null && files?.length > 0) {
                 const combinedPdf = await PDFDocument.create()
@@ -43,6 +42,7 @@ function App() {
                     const [lastPage] = await combinedPdf.copyPages(pdf, [
                         pdf.getPageCount() - 1,
                     ])
+
                     combinedPdf.addPage(lastPage)
                 }
 
