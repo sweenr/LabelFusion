@@ -38,21 +38,3 @@ const ToggleSwitch = ({
 }
 
 export default ToggleSwitch
-// ;('use client')
-
-// import * as React from 'react'
-// import * as SwitchPrimitives from '@radix-ui/react-switch'
-
-// // import { cn } from '@/lib/utils'
-
-// const ToggleSwitch = React.forwardRef<
-//     React.ElementRef<typeof SwitchPrimitives.Root>,
-//     React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
-// >(({ ...props }, ref) => (
-//     <SwitchPrimitives.Root className="SwitchRoot" {...props} ref={ref}>
-//         <SwitchPrimitives.Thumb className="SwitchThumb" />
-//     </SwitchPrimitives.Root>
-// ))
-// ToggleSwitch.displayName = SwitchPrimitives.Root.displayName
-
-// export { ToggleSwitch }
