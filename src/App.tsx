@@ -193,7 +193,9 @@ function App() {
                         <input
                             type="checkbox"
                             id="usePackingSlip"
-                            onClick={(e) => setIncPackingSlip(e.target.checked)}
+                            onChange={(e) =>
+                                setIncPackingSlip(e.target.checked)
+                            }
                         />
                         <label htmlFor="usePackingSlip">
                             Include packing slips [Experimental]
@@ -202,7 +204,7 @@ function App() {
                         <input
                             type="checkbox"
                             id="useThankYou"
-                            onClick={(e) => setIncThankYou(e.target.checked)}
+                            onChange={(e) => setIncThankYou(e.target.checked)}
                         />
                         <label htmlFor="useThankYou">
                             Include thank you note on packing slip
