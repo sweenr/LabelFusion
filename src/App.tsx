@@ -5,6 +5,7 @@ import { PDFDocument, RotationTypes, StandardFonts, rgb } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 import pdfToText from 'react-pdftotext'
 import ToggleSwitch from './components/ToggleSwitch'
+import Dropdown from './components/Dropdown'
 
 function App() {
     const labelSources = ['Whatnot', 'Other']
@@ -71,7 +72,7 @@ function App() {
                         const pageDims = lastPage.getSize()
 
                         const lines = pdfText
-                            .split(/(?<!Livestream )(Name:)|  /g)
+                            .split(/(?<!Livestream )(Name:)| {2}/g)
                             .filter((l) => l !== undefined && l !== '')
                         console.log(lines)
                         const packingSlip = combinedPdf.addPage([
@@ -168,6 +169,20 @@ function App() {
                 </a>
             </div>
             <div className="card">
+                <h2>How to use</h2>
+                <p>
+                    Click "Choose Files" to select your combined packing
+                    list/shipping label PDF files. You may select as many files
+                    as you need to combine. Click "Generate" to create a
+                    combined PDF that contains just the shipping labels from the
+                    last page of the PDFs.
+                </p>
+                <p>
+                    The process happens entirely in your browser. No data about
+                    your PDFs are ever uploaded anywhere.
+                </p>
+            </div>
+            <div className="card">
                 <input
                     type="file"
                     id="pdfs"
@@ -178,8 +193,8 @@ function App() {
                 <button onClick={generatePdf}>Generate</button>
             </div>
             <div className="card options">
-                <h2>Options:</h2>
-                <label htmlFor="labelSource">Select your label type: </label>
+                <h2>Options</h2>
+                <label htmlFor="labelSource">Label Type</label>
                 <select
                     id="labelSource"
                     onChange={(e) => setLabelSource(e.target.value)}
@@ -211,7 +226,7 @@ function App() {
                         {incThankYou ? (
                             <>
                                 <label htmlFor="thankYouText">
-                                    Thank you note text:{' '}
+                                    Thank you note text
                                 </label>
                                 <textarea
                                     id="thankYouText"
@@ -228,20 +243,6 @@ function App() {
                 ) : (
                     'No additional options'
                 )}
-            </div>
-            <div className="card">
-                <h2>How to use:</h2>
-                <p>
-                    Click "Choose Files" to select your combined packing
-                    list/shipping label PDF files. You may select as many files
-                    as you need to combine. Click "Generate" to create a
-                    combined PDF that contains just the shipping labels from the
-                    last page of the PDFs.
-                </p>
-                <p>
-                    The process happens entirely in your browser. No data about
-                    your PDFs are ever uploaded anywhere.
-                </p>
             </div>
         </>
     )
