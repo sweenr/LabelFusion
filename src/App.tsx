@@ -6,9 +6,14 @@ import fontkit from '@pdf-lib/fontkit'
 import pdfToText from 'react-pdftotext'
 
 function App() {
+    const labelSources = ['Whatnot', 'Other']
     const pdfInputRef = useRef(null)
     const [incPackingSlip, setIncPackingSlip] = useState(false)
     const [incThankYou, setIncThankYou] = useState(false)
+    const [thankYouText, setThankYouText] = useState(
+        'Thank you for\nyour order!'
+    )
+    const [labelSource, setLabelSource] = useState(labelSources[0])
 
     const handwritingFontUrl = '/CoveredByYourGrace-Regular.ttf'
 
@@ -129,7 +134,7 @@ function App() {
                         }
 
                         if (incThankYou) {
-                            packingSlip.drawText('Thank you for\nyour order!', {
+                            packingSlip.drawText(thankYouText, {
                                 x: pageDims.width / 2,
                                 y: pageDims.height / 4,
                                 size: fontSize * 2,
@@ -171,25 +176,59 @@ function App() {
                 />
                 <button onClick={generatePdf}>Generate</button>
             </div>
-            <div className="card">
+            <div className="card options">
                 <h2>Options:</h2>
-                <input
-                    type="checkbox"
-                    id="usePackingSlip"
-                    onClick={(e) => setIncPackingSlip(e.target.checked)}
-                />
-                <label htmlFor="usePackingSlip">
-                    Include packing slips [Experimental]
-                </label>
+                <label htmlFor="labelSource">Select your label type: </label>
+                <select
+                    id="labelSource"
+                    onChange={(e) => setLabelSource(e.target.value)}
+                >
+                    {labelSources.map((s) => (
+                        <option value={s}>{s}</option>
+                    ))}
+                </select>
                 <br />
-                <input
-                    type="checkbox"
-                    id="useThankYou"
-                    onClick={(e) => setIncThankYou(e.target.checked)}
-                />
-                <label htmlFor="useThankYou">
-                    Include thank you note on packing slip [Experimental]
-                </label>
+                {labelSource === 'Whatnot' ? (
+                    <>
+                        <input
+                            type="checkbox"
+                            id="usePackingSlip"
+                            onClick={(e) => setIncPackingSlip(e.target.checked)}
+                        />
+                        <label htmlFor="usePackingSlip">
+                            Include packing slips [Experimental]
+                        </label>
+                        <br />
+                        <input
+                            type="checkbox"
+                            id="useThankYou"
+                            onClick={(e) => setIncThankYou(e.target.checked)}
+                        />
+                        <label htmlFor="useThankYou">
+                            Include thank you note on packing slip
+                            [Experimental]
+                        </label>
+                        <br />
+                        {incThankYou ? (
+                            <>
+                                <label htmlFor="thankYouText">
+                                    Thank you note text:{' '}
+                                </label>
+                                <textarea
+                                    id="thankYouText"
+                                    value={thankYouText}
+                                    onChange={(e) =>
+                                        setThankYouText(e.target.value)
+                                    }
+                                />
+                            </>
+                        ) : (
+                            ''
+                        )}
+                    </>
+                ) : (
+                    'No additional options'
+                )}
             </div>
             <div className="card">
                 <h2>How to use:</h2>

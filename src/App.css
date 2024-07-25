@@ -38,6 +38,19 @@
     max-width: 750px;
 }
 
+.card.options {
+    text-align: left;
+}
+
+.card.options h2 {
+    text-align: center;
+}
+
+.card.options label {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .read-the-docs {
     color: #888;
 }
