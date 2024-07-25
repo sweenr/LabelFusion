@@ -5,17 +5,16 @@ import { PDFDocument, RotationTypes, StandardFonts, rgb } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 import pdfToText from 'react-pdftotext'
 import ToggleSwitch from './components/ToggleSwitch'
-import Dropdown from './components/Dropdown'
 
 function App() {
-    const labelSources = ['Whatnot', 'Other']
+    // const labelSources = ['Whatnot', 'Other']
     const pdfInputRef = useRef(null)
     const [incPackingSlip, setIncPackingSlip] = useState(false)
     const [incThankYou, setIncThankYou] = useState(false)
     const [thankYouText, setThankYouText] = useState(
         'Thank you for\nyour order!'
     )
-    const [labelSource, setLabelSource] = useState(labelSources[0])
+    // const [labelSource, setLabelSource] = useState(labelSources[0])
 
     const handwritingFontUrl = '/CoveredByYourGrace-Regular.ttf'
 
@@ -163,11 +162,9 @@ function App() {
 
     return (
         <>
-            <div>
-                <a href="/">
-                    <img src={logo} className="logo" alt="LabelFusion logo" />
-                </a>
-            </div>
+            <a href="/">
+                <img src={logo} className="logo" alt="LabelFusion logo" />
+            </a>
             <div className="card">
                 <h2>How to use</h2>
                 <p>
@@ -182,19 +179,9 @@ function App() {
                     your PDFs are ever uploaded anywhere.
                 </p>
             </div>
-            <div className="card">
-                <input
-                    type="file"
-                    id="pdfs"
-                    accept=".pdf"
-                    multiple={true}
-                    ref={pdfInputRef}
-                />
-                <button onClick={generatePdf}>Generate</button>
-            </div>
             <div className="card options">
-                <h2>Options</h2>
-                <label htmlFor="labelSource">Label Type</label>
+                <h2>Options (for Whatnot Shipping Labels)</h2>
+                {/* <label htmlFor="labelSource">Label Type</label>
                 <select
                     id="labelSource"
                     onChange={(e) => setLabelSource(e.target.value)}
@@ -205,44 +192,59 @@ function App() {
                         </option>
                     ))}
                 </select>
-                <br />
-                {labelSource === 'Whatnot' ? (
-                    <>
-                        <ToggleSwitch
-                            id="usePackingSlip"
-                            labelText="Include packing slips [Experimental]"
-                            checked={incPackingSlip}
-                            onCheckedChange={() =>
-                                setIncPackingSlip(!incPackingSlip)
-                            }
-                        />
-                        <ToggleSwitch
-                            id="useThankYou"
-                            labelText="Include thank you note on packing slip [Experimental]"
-                            checked={incThankYou}
-                            onCheckedChange={() => setIncThankYou(!incThankYou)}
-                        />
-                        <br />
-                        {incThankYou ? (
-                            <>
-                                <label htmlFor="thankYouText">
-                                    Thank you note text
-                                </label>
-                                <textarea
-                                    id="thankYouText"
-                                    value={thankYouText}
-                                    onChange={(e) =>
-                                        setThankYouText(e.target.value)
-                                    }
-                                />
-                            </>
-                        ) : (
-                            ''
-                        )}
-                    </>
-                ) : (
+                <br /> */}
+                {/* {labelSource === 'Whatnot' ? ( */}
+                <>
+                    <ToggleSwitch
+                        id="usePackingSlip"
+                        labelText="Include packing slips [Experimental]"
+                        checked={incPackingSlip}
+                        onCheckedChange={() =>
+                            setIncPackingSlip(!incPackingSlip)
+                        }
+                    />
+                    <ToggleSwitch
+                        id="useThankYou"
+                        labelText="Include thank you note on packing slip [Experimental]"
+                        checked={incThankYou}
+                        onCheckedChange={() => setIncThankYou(!incThankYou)}
+                    />
+                    {incThankYou ? (
+                        <>
+                            <label htmlFor="thankYouText">
+                                Thank you note text
+                            </label>
+                            <textarea
+                                id="thankYouText"
+                                value={thankYouText}
+                                onChange={(e) =>
+                                    setThankYouText(e.target.value)
+                                }
+                            />
+                        </>
+                    ) : (
+                        ''
+                    )}
+                </>
+                {/* ) : (
                     'No additional options'
-                )}
+                )} */}
+            </div>
+            <div className="card">
+                <label htmlFor="pdfs" className="uploadInputLabel">
+                    Choose Shipping Labels
+                </label>
+                <input
+                    type="file"
+                    id="pdfs"
+                    accept=".pdf"
+                    multiple={true}
+                    ref={pdfInputRef}
+                    className="fileInput"
+                />
+                <button className="generateBtn" onClick={generatePdf}>
+                    Generate
+                </button>
             </div>
         </>
     )

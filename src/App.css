@@ -6,8 +6,8 @@
 }
 
 .logo {
-    height: 25vh;
-    padding: 1.5em;
+    height: 20vh;
+    padding: 1rem 1rem 0 1rem;
     will-change: filter;
     transition: filter 300ms;
 }
@@ -16,6 +16,26 @@
 }
 .logo.react:hover {
     filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+p {
+    font-size: 0.9rem;
+}
+
+.generateBtn {
+    margin-top: 1rem;
+}
+
+.fileInput {
+    display: block;
+    margin: 1rem auto;
+}
+
+.uploadInputLabel {
+    display: block;
+    margin: 1em auto;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 @keyframes logo-spin {
@@ -34,8 +54,8 @@
 }
 
 .card {
-    padding: 2em;
-    max-width: 750px;
+    margin: 2em;
+    max-width: 75vw;
 }
 
 .card.options {
