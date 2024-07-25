@@ -4,6 +4,7 @@ import './App.css'
 import { PDFDocument, RotationTypes, StandardFonts, rgb } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 import pdfToText from 'react-pdftotext'
+import ToggleSwitch from './components/ToggleSwitch'
 
 function App() {
     const labelSources = ['Whatnot', 'Other']
@@ -184,32 +185,28 @@ function App() {
                     onChange={(e) => setLabelSource(e.target.value)}
                 >
                     {labelSources.map((s) => (
-                        <option value={s}>{s}</option>
+                        <option value={s} key={s}>
+                            {s}
+                        </option>
                     ))}
                 </select>
                 <br />
                 {labelSource === 'Whatnot' ? (
                     <>
-                        <input
-                            type="checkbox"
+                        <ToggleSwitch
                             id="usePackingSlip"
-                            onChange={(e) =>
-                                setIncPackingSlip(e.target.checked)
+                            labelText="Include packing slips [Experimental]"
+                            checked={incPackingSlip}
+                            onCheckedChange={() =>
+                                setIncPackingSlip(!incPackingSlip)
                             }
                         />
-                        <label htmlFor="usePackingSlip">
-                            Include packing slips [Experimental]
-                        </label>
-                        <br />
-                        <input
-                            type="checkbox"
+                        <ToggleSwitch
                             id="useThankYou"
-                            onChange={(e) => setIncThankYou(e.target.checked)}
+                            labelText="Include thank you note on packing slip [Experimental]"
+                            checked={incThankYou}
+                            onCheckedChange={() => setIncThankYou(!incThankYou)}
                         />
-                        <label htmlFor="useThankYou">
-                            Include thank you note on packing slip
-                            [Experimental]
-                        </label>
                         <br />
                         {incThankYou ? (
                             <>

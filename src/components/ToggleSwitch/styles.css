@@ -1,0 +1,46 @@
+.SwitchRoot {
+    width: 42px;
+    height: 27px;
+    background-color: darkgray;
+    border-radius: 9999px;
+    position: relative;
+    box-shadow: 0 2px 10px black;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.SwitchRoot:focus {
+    box-shadow: 0 0 0 2px black;
+}
+.SwitchRoot[data-state='checked'] {
+    background-color: black;
+}
+
+.SwitchThumb {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 9999px;
+    transition: transform 100ms;
+    transform: translate(-17px, -7px);
+    will-change: transform;
+}
+.SwitchThumb::after {
+    color: black;
+    content: '✘';
+}
+
+.SwitchThumb[data-state='checked'] {
+    transform: translate(-1px, -7px);
+}
+
+.SwitchThumb[data-state='checked']::after {
+    color: black;
+    content: '✔';
+}
+
+.Label {
+    color: white;
+    font-size: 15px;
+    line-height: 1;
+}
