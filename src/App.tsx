@@ -197,7 +197,8 @@ function App() {
                 <>
                     <ToggleSwitch
                         id="usePackingSlip"
-                        labelText="Include packing slips [Experimental]"
+                        labelText="Include packing slips"
+                        experimental
                         checked={incPackingSlip}
                         onCheckedChange={() =>
                             setIncPackingSlip(!incPackingSlip)
@@ -205,7 +206,8 @@ function App() {
                     />
                     <ToggleSwitch
                         id="useThankYou"
-                        labelText="Include thank you note on packing slip [Experimental]"
+                        labelText="Include thank you note on packing slip"
+                        experimental
                         checked={incThankYou}
                         onCheckedChange={() => setIncThankYou(!incThankYou)}
                     />
