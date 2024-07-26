@@ -55,7 +55,7 @@ p {
 
 .card {
     margin: 2em;
-    max-width: 75vw;
+    max-width: 55vw;
 }
 
 .card.options {
@@ -73,4 +73,10 @@ p {
 
 .read-the-docs {
     color: #888;
+}
+
+@media (max-width: 768px) {
+    .card {
+        max-width: 80vw;
+    }
 }
